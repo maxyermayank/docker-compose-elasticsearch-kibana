@@ -1,15 +1,13 @@
-version: '3.5'
+version: '3.6'
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch-platinum:6.0.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.0
     container_name: elasticsearch
     environment:
       - node.name=es01
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=true
-      - discovery.zen.minimum_master_nodes=1
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - ELASTIC_PASSWORD=changeme
     ulimits:
       nproc: 65535
       memlock:
@@ -26,28 +24,19 @@ services:
         max_attempts: 3
         window: 120s
     volumes:
-      - $PWD/esdata1:/usr/share/elasticsearch/data
+      - esdata1:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
-    networks:
-      - esnet
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9200"]
-      #test: echo "hello world"
-      interval: 10s
-      timeout: 10s
-      retries: 5
+      - 9300:9300
   elasticsearch2:
-    image: docker.elastic.co/elasticsearch/elasticsearch-platinum:6.0.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.0
     container_name: elasticsearch2
     environment:
       - node.name=es02
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=true
-      - discovery.zen.minimum_master_nodes=2
-      - ELASTIC_PASSWORD=changeme
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - "discovery.zen.ping.unicast.hosts: elasticsearch"
+      - "discovery.zen.ping.unicast.hosts=elasticsearch"
     ulimits:
       nproc: 65535
       memlock:
@@ -64,17 +53,41 @@ services:
         max_attempts: 3
         window: 120s
     volumes:
-      - $PWD/esdata2:/usr/share/elasticsearch/data
-    networks:
-      - esnet
-  kibana:
-    image: docker.elastic.co/kibana/kibana:6.0.0
+      - esdata2:/usr/share/elasticsearch/data
+  elasticsearch3:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.0
+    container_name: elasticsearch3
+    environment:
+      - node.name=es03
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "discovery.zen.ping.unicast.hosts=elasticsearch"
+    ulimits:
+      nproc: 65535
+      memlock:
+        soft: -1
+        hard: -1
+    cap_add:
+      - ALL
+    privileged: true
+    deploy:
+      mode: global
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
     volumes:
-      - $PWD/ki6-config/kibana.yml:/usr/share/kibana/config/kibana.yml
+      - esdata3:/usr/share/elasticsearch/data
+  kibana:
+    image: docker.elastic.co/kibana/kibana-oss:6.3.0
+    container_name: kibana
+    environment:
+      SERVER_NAME: localhost
+      ELASTICSEARCH_URL: http://elasticsearch:9200
     ports:
       - 5601:5601
-    networks:
-      - esnet
     ulimits:
       nproc: 65535
       memlock:
@@ -82,7 +95,6 @@ services:
         hard: -1
     cap_add:
       - ALL
-    privileged: true
     deploy:
       mode: global
       restart_policy:
@@ -90,18 +102,7 @@ services:
         delay: 5s
         max_attempts: 3
         window: 120s
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5601"]
-      #test: echo "hello world"
-      interval: 10s
-      timeout: 10s
-      retries: 5
 volumes:
   esdata1:
-    driver: local
   esdata2:
-    driver: local
-
-networks:
-  esnet:
-    driver: bridge
+  esdata3:
