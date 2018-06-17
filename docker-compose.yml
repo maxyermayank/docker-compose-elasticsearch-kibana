@@ -102,6 +102,15 @@ services:
         delay: 5s
         max_attempts: 3
         window: 120s
+  nginx:
+    image: nginx:latest
+    ports:
+        - 8080:80
+    volumes:
+        - ${PWD}/nginx-config/:/etc/nginx/conf.d/
+    command: /bin/bash -c "nginx -g 'daemon off;'"
+    ulimits:
+      nproc: 65535
 volumes:
   esdata1:
   esdata2:
