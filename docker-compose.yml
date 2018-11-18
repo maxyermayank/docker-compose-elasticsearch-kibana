@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.5.0
     container_name: elasticsearch
     environment:
       - node.name=es01
@@ -29,7 +29,7 @@ services:
       - 9200:9200
       - 9300:9300
   elasticsearch2:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.5.0
     container_name: elasticsearch2
     environment:
       - node.name=es02
@@ -55,7 +55,7 @@ services:
     volumes:
       - esdata2:/usr/share/elasticsearch/data
   elasticsearch3:
-    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.5.0
     container_name: elasticsearch3
     environment:
       - node.name=es03
@@ -81,11 +81,11 @@ services:
     volumes:
       - esdata3:/usr/share/elasticsearch/data
   kibana:
-    image: docker.elastic.co/kibana/kibana-oss:6.3.0
+    image: docker.elastic.co/kibana/kibana-oss:6.5.0
     container_name: kibana
     environment:
       SERVER_NAME: localhost
-      ELASTICSEARCH_URL: http://elasticsearch:9200
+      ELASTICSEARCH_URL: http://elasticsearch:9200/
     ports:
       - 5601:5601
     ulimits:
