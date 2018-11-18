@@ -1,7 +1,7 @@
 # docker-compose-elasticsearch-kibana
 
 ## Overview
-Docker Compose for 3 Node Elasticsearch (6.3.0) Cluster and Kibana (Open Source 6.3.0) Instance for development purposes.
+Docker Compose for 3 Node Elasticsearch (6.5.0) Cluster and Kibana (Open Source 6.5.0) Instance for development purposes.
 
 Kibana is being served behind Nginx Proxy so you can secure access of kibana for your purpose.
 
