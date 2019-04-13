@@ -1,7 +1,7 @@
 # docker-compose-elasticsearch-kibana
 
 ## Overview
-Docker Compose for 3 Node Elasticsearch (6.5.0) Cluster and Kibana (Open Source 6.5.0) Instance for development purposes.
+Docker Compose for 3 Node Elasticsearch (7.0.0) Cluster and Kibana (Open Source 7.0.0) Instance for development purposes.
 
 Kibana is being served behind Nginx Proxy so you can secure access of kibana for your purpose.
 
@@ -19,6 +19,11 @@ docker-compose up -d
 docker-compose ps -a
 ```
 
+### Stop Compose Stack
+```
+docker-compose down
+```
+
 ### Cluster Node Info
 ```
 curl http://localhost:9200/_nodes?pretty=true
@@ -29,6 +34,9 @@ curl http://localhost:9200/_nodes?pretty=true
 http://localhost:5601
 ```
 
+## Validate Kibana is running
+![](images/kibana.png)
+
 ### Accessing Kibana through Nginx
 ```
 http://localhost:8080
@@ -38,7 +46,10 @@ http://localhost:8080
 ```
 http://localhost:9200
 ```
+## Validate Elasticsearch is running
+![](images/elasticsearch.png)
 
 # Resources
 * [Hands on Elasticsearch](https://medium.com/@maxy_ermayank/hands-on-elasticsearch-8fa59d8aebfc)
 * [Elasticsearch Resources](https://medium.com/@maxy_ermayank/elasticsearch-resources-27d24f01c1dc)
+* [Open Distro Elasticsearch](https://medium.com/@maxy_ermayank/tl-dr-aws-open-distro-elasticsearch-fc642f0e592a)
