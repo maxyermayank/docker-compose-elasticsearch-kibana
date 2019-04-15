@@ -17,6 +17,8 @@ Docker Compose for 3 Node Elasticsearch (7.0.0) Cluster and Kibana (7.0.0) Insta
 - If you need Open Source version then change Elasticsearch and Kibana Images to elasticsearch-oss and kibana-oss respectively.
 - Kibana is being served behind Nginx Proxy so you can secure access of kibana for your purpose.
 
+# **COMING UP DOCKER APPLICATION PACKAGE FOR SWARM**
+
 ## **Requirements**
 - [x] Docker 18.05
 - [x] Docker-compose 1.21
