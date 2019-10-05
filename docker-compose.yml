@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.2.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.4.0
     container_name: elasticsearch1
     environment:
       - node.name=elasticsearch1
@@ -51,7 +51,7 @@ services:
       - 9200:9200
       - 9300:9300
   elasticsearch2:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.2.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.4.0
     container_name: elasticsearch2
     environment:
       - node.name=elasticsearch2
@@ -101,7 +101,7 @@ services:
     ports:
       - 9201:9200
   elasticsearch3:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.2.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.4.0
     container_name: elasticsearch3
     environment:
       - node.name=elasticsearch3
@@ -151,7 +151,7 @@ services:
     ports:
       - 9202:9200
   kibana:
-    image: docker.elastic.co/kibana/kibana:7.2.0
+    image: docker.elastic.co/kibana/kibana:7.4.0
     container_name: kibana
     environment:
       SERVER_NAME: localhost
@@ -190,7 +190,7 @@ services:
       - elastic
       - ingress
   auditbeat:
-    image: docker.elastic.co/beats/auditbeat:7.2.0
+    image: docker.elastic.co/beats/auditbeat:7.4.0
     command: auditbeat -e -strict.perms=false
     user: root
     environment:
@@ -204,7 +204,7 @@ services:
     networks:
       - elastic
   metricbeat:
-    image: docker.elastic.co/beats/metricbeat:7.2.0
+    image: docker.elastic.co/beats/metricbeat:7.4.0
     # command: --strict.perms=false
     environment:
       - setup.kibana.host=kibana:5601
@@ -222,7 +222,7 @@ services:
       - elastic
 
   heartbeat:
-    image: docker.elastic.co/beats/heartbeat:7.2.0
+    image: docker.elastic.co/beats/heartbeat:7.4.0
     command: --strict.perms=false
     environment:
       - setup.kibana.host=kibana:5601
@@ -233,7 +233,7 @@ services:
       - elastic
 
   packetbeat:
-    image: docker.elastic.co/beats/packetbeat:7.2.0
+    image: docker.elastic.co/beats/packetbeat:7.4.0
     command: --strict.perms=false
     environment:
       - setup.kibana.host=kibana:5601
@@ -247,7 +247,7 @@ services:
       - elastic
 
   filebeat:
-    image: docker.elastic.co/beats/filebeat:7.2.0
+    image: docker.elastic.co/beats/filebeat:7.4.0
     command: --strict.perms=false
     environment:
       - setup.kibana.host=kibana:5601
@@ -261,7 +261,7 @@ services:
     networks:
       - elastic
   apmserver:
-    image: docker.elastic.co/apm/apm-server:7.2.0
+    image: docker.elastic.co/apm/apm-server:7.4.0
     command: --strict.perms=false
     ports:
       - 8200:8200
@@ -275,7 +275,7 @@ services:
     networks:
         - elastic
   app-search:
-    image: docker.elastic.co/app-search/app-search:7.2.0
+    image: docker.elastic.co/app-search/app-search:7.4.0
     ports:
       - 3002:3002
     environment:
