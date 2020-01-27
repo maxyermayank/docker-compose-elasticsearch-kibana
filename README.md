@@ -1,17 +1,17 @@
 # **docker-compose-elasticsearch-kibana**
 
 # **Overview**
-Docker Compose for 3 Node Elasticsearch (7.5.1) Cluster and Kibana (7.5.1) Instance for development purposes.
+Docker Compose for 3 Node Elasticsearch () Cluster and Kibana () Instance for development purposes.
 
-- [x] 3 Node Elasticsearch version 7.5.1
-- [x] Kibana version 7.5.1
-- [x] Audit Beat version 7.5.1
-- [x] Metric Beat version 7.5.1
-- [x] Heart Beat version 7.5.1
-- [x] Packet Beat version 7.5.1
-- [x] File Beat version 7.5.1
-- [x] APM Server version 7.5.1
-- [x] APM Search 7.5.1
+- [x] 3 Node Elasticsearch version 
+- [x] Kibana version 
+- [x] Audit Beat version 
+- [x] Metric Beat version 
+- [x] Heart Beat version 
+- [x] Packet Beat version 
+- [x] File Beat version 
+- [x] APM Server version 
+- [x] APM Search 
 - [x] NGINX
 
 # **NOTES**
