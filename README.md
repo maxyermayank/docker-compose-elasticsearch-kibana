@@ -1,7 +1,7 @@
 # **docker-compose-elasticsearch-kibana**
 
 # **Overview**
-Docker Compose for 3 Node Elasticsearch () Cluster and Kibana () Instance for development purposes.
+Docker Compose for 3 Node Elasticsearch Cluster and Kibana Instance for development purposes.
 
 - [x] 3 Node Elasticsearch version 
 - [x] Kibana version 
